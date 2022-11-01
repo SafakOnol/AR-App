@@ -26,15 +26,22 @@ public class ARManager : MonoBehaviour
     private void SetEvents()
     {
         pointCloudManager.pointCloudsChanged += OnPointCloudsChanged;
+        planeManager.planesChanged += OnPlanesChanged;
     }
 
     private void ClearEvents()
     {
         pointCloudManager.pointCloudsChanged -= OnPointCloudsChanged;
+        planeManager.planesChanged -= OnPlanesChanged;
     }
     private void OnPointCloudsChanged(ARPointCloudChangedEventArgs pEventArgs)
     {
-        Debug.Log("Point Cloud Changed");
+        //Debug.Log("Point Cloud Changed");
+    }
+
+    private void OnPlanesChanged(ARPlanesChangedEventArgs pEventArgs)
+    {
+        Debug.Log($"AR Planes Changed. Added {pEventArgs.added.Count}, Updated {pEventArgs.updated.Count}, Removed {pEventArgs.removed.Count} ");
     }
 
 }
